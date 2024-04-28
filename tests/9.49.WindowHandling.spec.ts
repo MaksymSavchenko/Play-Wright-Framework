@@ -44,9 +44,36 @@ test.only('Multi Tabs Handling', async ({ page }) => {
     await muliTab.waitForLoadState();
     const pages = muliTab.context().pages();
     console.log("Total pages opened " +pages.length);
+    await pages[1].getByRole('button', { name: 'Sign In', exact: true }).click();
+    //await pages[1].locator('#email').fill('max@max.com');
+    //await pages[1].getByPlaceholder('Email id for Sign Up').fill('max@max.com');
+    await muliTab.waitForTimeout(1000);
 
-    await pages[1].locator("#email").fill('max@google.com');
-    await muliTab.waitForTimeout(5000);
+    await pages[2].locator("//span[normalize-space()='Documentation']").click();
+    await pages[2].locator("#docsearch-1").click();
+    await pages[2].locator("#docsearch-input").fill("Locator Strategies")
+    await pages[2].waitForTimeout(5000);
+    await pages[1].close();
+    await pages[2].close();
+    await pages[0].close();
+    
+    })
+
+    test.only('Multi Tabs Handling', async ({ page }) => {
+    await page.goto('https://demo.automationtesting.in/Windows.html');
+    await page.locator('.analystic[href="#Multiple"]').click();
+    const [muliTab] = await Promise.all([
+        page.waitForEvent('popup'),
+        await page.click('button[onclick="multiwindow()"]')
+    ])
+
+    await muliTab.waitForLoadState();
+    const pages = muliTab.context().pages();
+    console.log("Total pages opened " +pages.length);
+    await pages[1].getByRole('button', { name: 'Sign In', exact: true }).click();
+    //await pages[1].locator('#email').fill('max@max.com');
+    //await pages[1].getByPlaceholder('Email id for Sign Up').fill('max@max.com');
+    await muliTab.waitForTimeout(1000);
 
     await pages[2].locator("//span[normalize-space()='Documentation']").click();
     await pages[2].locator("#docsearch-1").click();
