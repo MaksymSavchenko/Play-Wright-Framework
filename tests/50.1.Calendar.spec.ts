@@ -28,7 +28,7 @@ test.only('Using Luxon', async ({ page }) => {
 
     // Select Current Date
     await page.locator('input[placeholder="Start date"]').click();
-    selectDate(7,"April 2024",page);
+    selectDate(27,"April 2024",page);
     await page.waitForTimeout(5000);
     await page.reload();
 });
@@ -40,8 +40,8 @@ const prevButton = page.locator('div[class="datepicker-days"] th[class="prev"]')
 const nextButton = page.locator('div[class="datepicker-days"] th[class="next"]');
 const formattedMonth = DateTime.fromFormat(dateToSelect, "MMMM yyyy");
 
-    while(await monthYear.textContent() != dateToSelect){
-    if(formattedMonth < DateTime.fromJsDate(new Date())){
+    while(await monthYear.textContent() !=dateToSelect){
+    if(formattedMonth < DateTime.fromJSDate(new Date())){
         await prevButton.click();
     }
     else{
@@ -49,5 +49,7 @@ const formattedMonth = DateTime.fromFormat(dateToSelect, "MMMM yyyy");
         }
     }
 
-    await page.locator(`//td[@class="day"] [text()="${date}"]`).click();
+    //await page.locator(`//td[@class="day"] [text()="${date}"]`).click();
+    await page.locator(`//td[@data-date] [text()="${date}"]`).click();
+    //td[@data-date='1714176000000']
 }
