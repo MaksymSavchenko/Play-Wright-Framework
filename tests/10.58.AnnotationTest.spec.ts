@@ -9,7 +9,6 @@ test.skip('Skipped in Webkit', async ({ page, browserName }) => {
     console.log('I am a Skipped Test with conditions');
 })
 
-
 test('Not yet ready Test', async ({ page, browserName }) => {
     test.fail(browserName === 'webkit', 'This feature is not implemented for mac OS')
     console.log('I am a Failed Test with conditions');
