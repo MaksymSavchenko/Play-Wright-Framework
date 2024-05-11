@@ -12,14 +12,14 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   // add ".//tests" for Win 11 
   testDir: './tests',
-  //timeout:10*1000,
+  timeout:10*1000,
   /* Run tests in files in parallel */
   fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
   //retries: process.env.CI ? 2 : 0,
-  //retries:1,
+  retries:1,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
@@ -33,7 +33,14 @@ export default defineConfig({
     //headless:false,
     //trace:'on-first-retry',
     trace:'off',
+    screenshot:'only-on-failure',
+    // screenshot: 'on'
+    // screenshot: 'only-on-failure',
+    video:'on-first-retry'
   },
+
+  //grep: [new RegExp("@smoke"), new RegExp("@sanity")],
+  grepInvert: [new RegExp("@smoke"), new RegExp("@sanity")],
 
   /* Configure projects for major browsers */
   projects: [
