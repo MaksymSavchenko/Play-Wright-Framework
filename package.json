@@ -10,6 +10,7 @@
   "devDependencies": {
     "@playwright/test": "^1.42.0",
     "@types/node": "^20.11.24",
+    "csv-parse": "^5.5.6",
     "luxon": "^3.4.4"
   }
 }
