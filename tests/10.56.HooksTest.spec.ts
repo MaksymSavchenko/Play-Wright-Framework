@@ -1,4 +1,4 @@
-import { test } from '@playwright/test'
+    import { test } from '@playwright/test'
 
 let page;
 
@@ -14,7 +14,6 @@ test.afterEach(async () => {
     await page.locator('#react-burger-menu-btn').click();
     await page.locator('#logout_sidebar_link').click();
     await page.close();
-
 });
 
 test('Add items and Check out test', async ({ }) => {
